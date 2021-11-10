@@ -32,7 +32,7 @@ function onSerchCountry(event) {
 
 function onAlert() {
   alert({
-          title: 'Последнее китайское!!!',
+          title: 'Attention!',
           text: 'Маловато символов!',
           stack: myStack
         });
@@ -40,7 +40,7 @@ function onAlert() {
 
 function onError() {
   error({
-        title: 'Ошибочка!!!',
+        title: 'Error!!!',
         text: 'Давай по новой',
         stack: myStack,
       })
