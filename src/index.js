@@ -3,11 +3,17 @@ import { debounce } from 'lodash';
 import nameCountryTpl from './templates/nameCountry.hbs'
 import cardCountryTpl from './templates/cardCountry.hbs'
 import fetchCountry from './js/fetchCountries.js';
+import { defaults, error, alert, Stack } from '@pnotify/core';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const countryCardContainer = document.querySelector('.country');
 const searchCountry = document.querySelector('#input');
 
 searchCountry.addEventListener('input', debounce(onSerchCountry, 500))
+
+const myStack = new Stack({
+  dir1: 'up',
+});
 
 function onSerchCountry(event) {
   fetchCountry(event)
@@ -18,8 +24,18 @@ function onSerchCountry(event) {
       } if (data.length < 11) {
         return countryCardContainer.insertAdjacentHTML('beforeend', nameCountryTpl(data))
       } if (data.length > 10) {
-        return console.log('Перебор!!!');
+        alert({
+          title: 'Последнее китайское!!!',
+          text: 'Маловато символов!',
+          stack: myStack
+        });
       }
     })
+    .catch(
+      error({
+        title: 'Ошибочка!!!',
+        text: 'Давай по новой',
+        stack: myStack,
+      })
+    )
 };
-
