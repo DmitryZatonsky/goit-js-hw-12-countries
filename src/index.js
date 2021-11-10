@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import nameCountryTpl from './templates/nameCountry.hbs'
 import cardCountryTpl from './templates/cardCountry.hbs'
 import fetchCountry from './js/fetchCountries.js';
-import { defaults, error, alert, Stack } from '@pnotify/core';
+import { error, alert, Stack } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 
 const countryCardContainer = document.querySelector('.country');
@@ -27,7 +27,7 @@ function onSerchCountry(event) {
         return onAlert();
       }
     })
-    .catch(onError())
+    .catch(onError)
 };
 
 function onAlert() {
