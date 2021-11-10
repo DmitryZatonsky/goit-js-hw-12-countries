@@ -23,19 +23,25 @@ function onSerchCountry(event) {
         return countryCardContainer.insertAdjacentHTML('beforeend', cardCountryTpl(data[0]))
       } if (data.length < 11) {
         return countryCardContainer.insertAdjacentHTML('beforeend', nameCountryTpl(data))
-      } if (data.length > 10) {
-        alert({
+      } if (data.length > 10 || data.length < 1) {
+        return onAlert();
+      }
+    })
+    .catch(onError())
+};
+
+function onAlert() {
+  alert({
           title: 'Последнее китайское!!!',
           text: 'Маловато символов!',
           stack: myStack
         });
-      }
-    })
-    .catch(
-      error({
+}
+
+function onError() {
+  error({
         title: 'Ошибочка!!!',
         text: 'Давай по новой',
         stack: myStack,
       })
-    )
-};
+}
